@@ -1,0 +1,128 @@
+/* Vice City Cover Maker — dark neon editor. Fonts are files under app/fonts/. */
+@font-face {
+  font-family: 'Anton';
+  src: url('./fonts/Anton-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Oswald';
+  src: url('./fonts/Oswald.ttf') format('truetype');
+  font-weight: 200 700;
+  font-display: swap;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  background: #14091f;
+  color: #f5eef7;
+  font: 15px/1.45 'Oswald', system-ui, sans-serif;
+}
+.app {
+  display: flex;
+  gap: 28px;
+  min-height: 100%;
+  padding: 22px 26px;
+  align-items: flex-start;
+  justify-content: center;
+}
+.panel.controls {
+  width: 320px;
+  flex: 0 0 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: #1e0f2b;
+  border: 1px solid #3d2354;
+  border-radius: 12px;
+  padding: 18px;
+}
+h1 { margin: 0; font-family: 'Anton', sans-serif; font-size: 30px; line-height: 1.05; letter-spacing: 0.5px; }
+h1 .vice {
+  background: linear-gradient(90deg, #ff5e8a, #ff9a3d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+h1 .maker { color: #fff; display: block; }
+.tagline { margin: 0; color: #c9a8d8; font-size: 14px; }
+fieldset {
+  border: 1px solid #3d2354;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+legend { font-family: 'Anton', sans-serif; font-size: 13px; letter-spacing: 1px; color: #ff9a3d; padding: 0 6px; }
+label { display: flex; flex-direction: column; gap: 5px; font-weight: 600; font-size: 13px; color: #e8d5ef; }
+input[type=text], select {
+  font: inherit;
+  color: #1d1026;
+  background: #fff;
+  border: 1px solid #6b4a86;
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+.slot {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 8px;
+  align-items: center;
+  padding: 8px;
+  border: 1px dashed #4a2d63;
+  border-radius: 6px;
+}
+.slot.selected { border-color: #ff5e8a; background: rgba(255, 94, 138, 0.08); }
+.slot-name { font-weight: 700; color: #ffd166; grid-column: 1 / -1; }
+.file-btn, .sample-btn {
+  font: inherit;
+  font-weight: 700;
+  font-size: 13px;
+  text-align: center;
+  padding: 7px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 0;
+}
+.file-btn { background: #ff5e8a; color: #fff; }
+.sample-btn { background: #2c1840; color: #ffd166; border: 1px solid #6b4a86; }
+.file-btn input { display: none; }
+.zoom { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 8px; }
+.zoom input { flex: 1; accent-color: #ff5e8a; }
+.check { flex-direction: row; align-items: center; gap: 8px; }
+.check input { accent-color: #ff5e8a; width: 16px; height: 16px; }
+.hint { margin: 0; font-size: 12.5px; color: #b99cc9; }
+#export {
+  font-family: 'Anton', sans-serif;
+  font-size: 19px;
+  letter-spacing: 1px;
+  padding: 12px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #1d1026;
+  background: linear-gradient(90deg, #ff5e8a, #ff9a3d, #ffd166);
+}
+#status { margin: 0; min-height: 1.2em; font-size: 13px; color: #8fe3c0; }
+.preview { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+#cover {
+  width: min(62vh, 58vw);
+  height: auto;
+  background: #2b1838;
+  box-shadow: 0 12px 44px rgba(0, 0, 0, 0.55), 0 0 0 1px #3d2354;
+  border-radius: 4px;
+  cursor: grab;
+  touch-action: none;
+}
+#cover:active { cursor: grabbing; }
+.preview-hint { margin: 0; font-size: 13px; color: #b99cc9; }
+
+/* Screenshot scenes: ?shot=cover hides the editor and fills the frame with the cover. */
+body.shot-cover { background: #14091f; }
+body.shot-cover .panel.controls, body.shot-cover .preview-hint { display: none; }
+body.shot-cover .app { padding: 0; gap: 0; }
+body.shot-cover .preview { width: 100vw; height: 100vh; }
+body.shot-cover #cover { width: 100vw; height: 100vh; box-shadow: none; border-radius: 0; }
